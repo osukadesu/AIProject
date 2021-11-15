@@ -23,7 +23,7 @@ public class IAController : MonoBehaviour
         time += 1;
         transform.Translate(transform.forward * speed * Time.fixedDeltaTime);
         transform.Rotate(new Vector3(0, y, 0));
-        if (time >= Random.Range(100, 2500))
+        if (time >= Random.Range(200, 2500))
         {
             Rotatar();
             rotime = true;
@@ -31,7 +31,7 @@ public class IAController : MonoBehaviour
         }
         if (rotime == true)
         {
-            if (time >= Random.Range(50, 100))
+            if (time >= Random.Range(15, 40))
             {
                 y = 0;
                 rotime = false;

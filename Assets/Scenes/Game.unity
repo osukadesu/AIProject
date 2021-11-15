@@ -1387,7 +1387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0
-  speed: 5
+  speed: 3
   rotime: 0
 --- !u!1 &1125628056
 GameObject:
