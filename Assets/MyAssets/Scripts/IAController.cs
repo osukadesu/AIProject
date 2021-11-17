@@ -5,59 +5,48 @@ using UnityEngine.AI;
 public class IAController : MonoBehaviour
 {
     public int time;
-    public float speed = 5f;
-    float y;
-    public bool rotime;
-    public bool Attack;
-    public bool idle;
+    public float vel;
+    public GameObject target;
     public NavMeshAgent agent;
-    public Animator anim;
-
-    public int state = 1;
-
-    void FixedUpdate()
+    public float distance;
+    bool timerotate;
+    public bool idle;
+    float y;
+    private void FixedUpdate()
     {
         time += 1;
-        if (state == 1)
+        if (idle)
         {
-            Attack = true;
-            idle = false;
-        }
-        else if (state == 2)
-        {
-            Attack = false;
-            idle = true;
-        }
-        if (idle == true)
-        {
-            transform.Translate(transform.forward * speed * Time.fixedDeltaTime);
+            transform.Translate(transform.forward * vel * Time.fixedDeltaTime);
             transform.Rotate(new Vector3(0, y, 0));
-            anim.SetBool("Idle",true);
-            if (time >= Random.Range(200, 2500))
+            if (time >= Random.Range(100, 2500))
             {
-                Rotatar();
-                rotime = true;
+                Rotate();
                 time = 0;
+                timerotate = true;
             }
-            if (rotime == true)
+            if (timerotate == true)
             {
-                if (time >= Random.Range(15, 40))
+                if (time >= Random.Range(50, 100))
                 {
                     y = 0;
-                    rotime = false;
+                    timerotate = false;
                 }
             }
         }
-        else if (Attack == true)
+        if (Vector3.Distance(target.transform.position, transform.position) < distance)
         {
-            agent.SetDestination(GameObject.FindGameObjectWithTag("Player").transform.position);
-            if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) > 30)
-            {
-                state = 1;
-            }
+            idle = false;
+            agent.SetDestination(target.transform.position);
+            agent.speed = 3;
+        }
+        else
+        {
+            idle = true;
+            agent.speed = 0;
         }
     }
-    public void Rotatar()
+    public void Rotate()
     {
         y = Random.Range(-3, 3);
     }

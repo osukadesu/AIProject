@@ -24,14 +24,14 @@ public class LogicaVida : MonoBehaviour
         if (vidactual <= 0)
         {
             gameObject.SetActive(false);
-            
+
             Gameover();
         }
 
     }
     public void Gameover()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
     }
 
     public void updatevida()

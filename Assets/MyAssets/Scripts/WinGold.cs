@@ -17,7 +17,7 @@ public class WinGold : MonoBehaviour
     }
     void Update()
     {
-        //txtGold += 10;
+        txtGold += 10;
         Gold.text = txtGold.ToString();
     }
 }
