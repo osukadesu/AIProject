@@ -6,18 +6,17 @@ using UnityEngine.UI;
 public class WinGold : MonoBehaviour
 {
     public Text Gold;
-    public int txtGold;
+
+    public int txtGold = 0;
 
     LogicaVidaViruz lv;
 
-    // Start is called before the first frame update
-    void Start()
+    public void updategold()
     {
-        txtGold = 0;
-    }
-    void Update()
-    {
-        txtGold += 10;
-        Gold.text = txtGold.ToString();
+        if (lv.gameObject.tag == "Virus" && lv.vidactual == 0)
+        {
+            txtGold += 10;
+            Gold.text = txtGold.ToString();
+        }
     }
 }
